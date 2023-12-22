@@ -63,6 +63,14 @@ namespace LabStreamer.Domain.Conta.Agreggates
             });
         }
 
+        public void CriarListaReproducaoFavorita(string nome, bool publica = true)
+        {
+            this.ListaFavoritas.Add(new ListaFavorita()
+            {
+                Nome = nome,
+            });
+        }
+
         private void AdicionarCartao(Cartao cartao)
             => this.ContaUsuario.Cartoes.Add(cartao);
 
