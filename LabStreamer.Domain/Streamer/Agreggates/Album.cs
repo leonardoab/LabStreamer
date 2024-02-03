@@ -14,9 +14,6 @@ namespace LabStreamer.Domain.Streamer.Agreggates
 
         public List<Musica> Musicas { get; set; } = new List<Musica>();
 
-        public void AdicionarMusica(Musica musica) =>
-            this.Musicas.Add(musica);
-        public void AdicionarMusica(List<Musica> musica) =>
-            this.Musicas.AddRange(musica);
+     
     }
 }

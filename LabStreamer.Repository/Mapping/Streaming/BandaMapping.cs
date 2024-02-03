@@ -18,7 +18,9 @@ namespace LabStreamer.Repository.Mapping.Streaming
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired();
-            
+
+            builder.HasOne(x => x.Albuns).WithMany();
+
 
         }
     }

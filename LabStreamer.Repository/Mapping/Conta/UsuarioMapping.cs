@@ -23,8 +23,8 @@ namespace LabStreamer.Repository.Mapping.Conta
             builder.Property(x => x.Ativo).IsRequired();
             builder.Property(x => x.DataCriacao).IsRequired();
 
-            builder.HasOne(x => x.Assinatura).WithMany();
-            builder.HasOne(x => x.ContaUsuario).WithMany();
+            builder.HasOne(x => x.ListaFavoritas).WithMany();
+            
 
             
 

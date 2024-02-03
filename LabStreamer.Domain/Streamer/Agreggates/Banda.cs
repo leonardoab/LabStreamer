@@ -13,7 +13,6 @@ namespace LabStreamer.Domain.Streamer.Agreggates
 
         public List<Album> Albuns { get; set; } = new List<Album>();
 
-        public void AdicionarAlbum(Album album) =>
-            this.Albuns.Add(album);
+        //public void AdicionarAlbum(Album album) => this.Albuns.Add(album);
     }
 }

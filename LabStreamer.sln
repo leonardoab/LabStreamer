@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabStreamer.Domain", "LabSt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabStreamer.Repository", "LabStreamer.Repository\LabStreamer.Repository.csproj", "{9EA80FB4-F6F6-4C94-B954-7291CD98C552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabStreamer.Tests", "LabStreamer.Tests\LabStreamer.Tests.csproj", "{2B9C0CE0-8325-4A97-B2D5-E650B4578804}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{9EA80FB4-F6F6-4C94-B954-7291CD98C552}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EA80FB4-F6F6-4C94-B954-7291CD98C552}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EA80FB4-F6F6-4C94-B954-7291CD98C552}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B9C0CE0-8325-4A97-B2D5-E650B4578804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B9C0CE0-8325-4A97-B2D5-E650B4578804}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B9C0CE0-8325-4A97-B2D5-E650B4578804}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B9C0CE0-8325-4A97-B2D5-E650B4578804}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

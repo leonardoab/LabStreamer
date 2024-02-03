@@ -22,6 +22,8 @@ namespace LabStreamer.Repository.Mapping.Streaming
             builder.Property(x => x.Nome).IsRequired();
             builder.Property(x => x.DataCriacao).IsRequired();
 
+            builder.HasOne(x => x.Musicas).WithMany();
+
         }
     }
 }

@@ -20,7 +20,7 @@ namespace LabStreamer.Repository.Mapping.Streaming
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired();
 
-            builder.HasMany(x => x.Musicas).WithMany(x => x.ListaFavoritas);
+            builder.HasOne(x => x.Musicas).WithMany();
 
         }
     }
