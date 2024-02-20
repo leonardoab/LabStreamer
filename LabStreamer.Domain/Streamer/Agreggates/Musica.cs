@@ -11,7 +11,9 @@ namespace LabStreamer.Domain.Streamer.Agreggates
     {
         public Guid Id { get; set; }
         public String Nome { get; set; }
-        public Duracao Duracao { get; set; }               
-        
+        //public Duracao Duracao { get; set; }
+        //
+        public List<ListaFavorita> ListaFavoritas { get; set; }
+
     }
 }

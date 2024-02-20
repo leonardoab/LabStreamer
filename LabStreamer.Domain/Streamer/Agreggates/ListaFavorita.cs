@@ -11,7 +11,7 @@ namespace LabStreamer.Domain.Streamer.Agreggates
         public Guid Id { get; set; }
         public string Nome { get; set; }
 
-        public List<Musica> Musicas { get; set; } = new List<Musica>();
+        public List<Musica> Musicas { get; set; } 
 
     }
 }

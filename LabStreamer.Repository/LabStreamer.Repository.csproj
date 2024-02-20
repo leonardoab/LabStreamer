@@ -17,4 +17,8 @@
     <ProjectReference Include="..\LabStreamer.Domain\LabStreamer.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

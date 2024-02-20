@@ -12,7 +12,7 @@ namespace LabStreamer.Domain.Streamer.Agreggates
         public string Nome { get; set; }
         public DateTime DataCriacao { get; set; }
 
-        public List<Musica> Musicas { get; set; } = new List<Musica>();
+        public List<Musica> Musicas { get; set; }
 
      
     }

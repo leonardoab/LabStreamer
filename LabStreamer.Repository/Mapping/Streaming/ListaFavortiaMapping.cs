@@ -14,13 +14,16 @@ namespace LabStreamer.Repository.Mapping.Streaming
     {
         public void Configure(EntityTypeBuilder<ListaFavorita> builder)
         {
-            builder.ToTable(nameof(Conta));
+            builder.ToTable(nameof(ListaFavorita));
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired();
 
-            builder.HasOne(x => x.Musicas).WithMany();
+            //builder.HasMany(a => a.Musicas).WithOne(); // Especifica o relacionamento de Album para Musicas
+            
+
+            builder.HasMany(x => x.Musicas).WithMany(x => x.ListaFavoritas);
 
         }
     }

@@ -13,13 +13,15 @@ namespace LabStreamer.Repository.Mapping.Streaming
     {
         public void Configure(EntityTypeBuilder<Banda> builder)
         {
-            builder.ToTable(nameof(Conta));
+            builder.ToTable(nameof(Banda));
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired();
 
-            builder.HasOne(x => x.Albuns).WithMany();
+            //builder.HasOne(x => x.Albuns).WithMany();
+            builder.HasMany<Album>(x => x.Albuns).WithOne();
+            builder.HasMany<Musica>(x => x.Musicas).WithOne();
 
 
         }

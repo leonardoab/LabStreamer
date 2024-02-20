@@ -14,7 +14,7 @@ namespace LabStreamer.Repository.Mapping.Conta
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.ToTable(nameof(Conta));
+            builder.ToTable(nameof(Usuario));
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
@@ -23,7 +23,7 @@ namespace LabStreamer.Repository.Mapping.Conta
             builder.Property(x => x.Ativo).IsRequired();
             builder.Property(x => x.DataCriacao).IsRequired();
 
-            builder.HasOne(x => x.ListaFavoritas).WithMany();
+            //builder.HasOne(x => x.ListaFavoritas).WithMany();
             
 
             

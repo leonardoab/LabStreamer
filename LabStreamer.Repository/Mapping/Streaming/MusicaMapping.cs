@@ -13,12 +13,12 @@ namespace LabStreamer.Repository.Mapping.Streaming
     {
         public void Configure(EntityTypeBuilder<Musica> builder)
         {
-            builder.ToTable(nameof(Conta));
+            builder.ToTable(nameof(Musica));
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired();
-            builder.Property(x => x.Duracao).IsRequired();
+            //builder.Property(x => x.Duracao).IsRequired();
 
         }
     }
