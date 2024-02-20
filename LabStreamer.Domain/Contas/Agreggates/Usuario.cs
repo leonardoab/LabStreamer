@@ -1,6 +1,4 @@
-﻿using LabStreamer.Domain.Notificacao;
-using LabStreamer.Domain.Streamer.Agreggates;
-using LabStreamer.Domain.Transacao.Agreggates;
+﻿using LabStreamer.Domain.Streamer.Agreggates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
