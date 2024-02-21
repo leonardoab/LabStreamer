@@ -19,13 +19,8 @@ namespace LabStreamer.Repository.Mapping.Streaming
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired();
 
-            //builder.HasOne(x => x.Albuns).WithMany();
-            builder.HasMany<Album>(x => x.Albuns).WithOne();
-            builder.HasMany<Musica>(x => x.Musicas).WithOne();
-
-
+            builder.HasMany(x => x.Albuns).WithOne(); // Relação opcional
+            builder.HasMany(x => x.Musicas).WithOne(); // Relação opcional
         }
     }
-
-   
 }

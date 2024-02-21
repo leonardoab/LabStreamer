@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LabStreamer.Domain.Streamer.Agreggates
+﻿namespace LabStreamer.Domain.Streamer.Agreggates
 {
     public class Banda
     {
         public Guid Id { get; set; }
         public string Nome { get; set; }
 
-        public List<Album> Albuns { get; set; }
-        public List<Musica> Musicas { get; set; }
+        public List<Album> Albuns { get; set; } = new List<Album>(); // Inicialize a lista de Albuns
+        public List<Musica> Musicas { get; set; } = new List<Musica>(); // Inicialize a lista de Musicas
 
-
-
-        //public void AdicionarAlbum(Album album) => this.Albuns.Add(album);
+        // Construtor
+        public Banda()
+        {
+            // Inicialize as listas se necessário
+            Albuns = new List<Album>();
+            Musicas = new List<Musica>();
+        }
     }
 }

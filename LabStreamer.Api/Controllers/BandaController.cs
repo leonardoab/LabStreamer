@@ -1,4 +1,5 @@
-﻿using LabStreamer.Repository;
+﻿using LabStreamer.Domain.Streamer.Agreggates;
+using LabStreamer.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +29,7 @@ namespace LabStreamer.Api.Controllers
             var result = this.Context.Bandas.Where(x => x.Id == id).ToList();
 
 
-            if (result == null)
+            if (result.Count() == 0)
             {
                 return NotFound();
             }
@@ -38,7 +39,19 @@ namespace LabStreamer.Api.Controllers
 
         }
 
-       
+        [HttpPost]
+        public IActionResult SaveBandas([FromBody] Banda banda)
+        {
+
+            this.Context.Bandas.Add(banda);
+            this.Context.SaveChanges();
+            return Created($"/banda/{banda.Id}", banda);
+
+
+
+        }
+
+
 
 
     }
