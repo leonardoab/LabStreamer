@@ -3,21 +3,24 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Adicione serviços ao contêiner.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Saiba mais sobre como configurar o Swagger/OpenAPI em https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<LabStreamerContext>(c =>
+var connectionString = builder.Configuration.GetConnectionString("LabStreamerConnection");
+
+builder.Services.AddDbContext<LabStreamerContext>(options =>
 {
-    c.UseSqlServer(builder.Configuration.GetConnectionString("LabStreamerConnection"));
+    // Defina a montagem de migrações correta aqui
+    options.UseSqlServer(connectionString, b => b.MigrationsAssembly("LabStreamer.Api"));
 });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure o pipeline de solicitação HTTP.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -25,9 +28,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
