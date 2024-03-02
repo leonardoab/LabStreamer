@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpotifyLike.Domain.Streaming.ValueObject
+namespace LabStreamer.Domain.Streaming.ValueObject
 {
     public record Duracao
     {

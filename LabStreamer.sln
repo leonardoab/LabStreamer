@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabStreamer.Domain", "LabSt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabStreamer.Repository", "LabStreamer.Repository\LabStreamer.Repository.csproj", "{9EA80FB4-F6F6-4C94-B954-7291CD98C552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabStreamer.Api", "LabStreamer.Api\LabStreamer.Api.csproj", "{C7E11ADF-F7C9-4522-A70A-85EAD4C3B749}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabStreamer.Api", "LabStreamer.Api\LabStreamer.Api.csproj", "{C7E11ADF-F7C9-4522-A70A-85EAD4C3B749}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabStreamer.Application", "LabStreamer.Application\LabStreamer.Application.csproj", "{8AF0C58F-CB30-4F88-85CF-9073425087F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C7E11ADF-F7C9-4522-A70A-85EAD4C3B749}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7E11ADF-F7C9-4522-A70A-85EAD4C3B749}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7E11ADF-F7C9-4522-A70A-85EAD4C3B749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF0C58F-CB30-4F88-85CF-9073425087F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF0C58F-CB30-4F88-85CF-9073425087F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF0C58F-CB30-4F88-85CF-9073425087F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF0C58F-CB30-4F88-85CF-9073425087F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

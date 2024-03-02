@@ -18,6 +18,13 @@ namespace LabStreamer.Domain.Conta.Agreggates
         public Boolean Ativo { get; set; }        
         public DateTime DataCriacao { get; set; }
 
+        public void CriarUsuario(string nome, string email, string senha)
+        {
+            Nome = nome;
+            Email = email;
+            Senha = senha;
+        }
+
         public List<ListaFavorita> ListaFavoritas { get; set; } = new List<ListaFavorita>();
                 
     }
