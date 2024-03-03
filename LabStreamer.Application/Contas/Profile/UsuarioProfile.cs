@@ -10,7 +10,7 @@ namespace LabStreamer.Application.Contas.Profile
 {
     public class UsuarioProfile : AutoMapper.Profile
     {
-        protected UsuarioProfile()
+        public UsuarioProfile()
         {
             CreateMap<UsuarioDto, Usuario>();
             CreateMap<Usuario, UsuarioDto>();
