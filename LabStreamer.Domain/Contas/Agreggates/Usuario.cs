@@ -22,10 +22,25 @@ namespace LabStreamer.Domain.Conta.Agreggates
         {
             Nome = nome;
             Email = email;
-            Senha = senha;
+            Senha = CriptografarSenha(senha);
+
+
         }
 
         public List<ListaFavorita> ListaFavoritas { get; set; } = new List<ListaFavorita>();
-                
+
+        private String CriptografarSenha(string senha)
+        {
+            SHA256 criptoProvider = SHA256.Create();
+
+            byte[] btexto = Encoding.UTF8.GetBytes(senha);
+
+            var criptoResult = criptoProvider.ComputeHash(btexto);
+
+            return Convert.ToHexString(criptoResult);
+        }
+
     }
+
+   
 }

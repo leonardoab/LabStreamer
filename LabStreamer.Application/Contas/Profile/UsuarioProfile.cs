@@ -13,7 +13,14 @@ namespace LabStreamer.Application.Contas.Profile
         public UsuarioProfile()
         {
             CreateMap<UsuarioDto, Usuario>();
-            CreateMap<Usuario, UsuarioDto>();
+            CreateMap<Usuario, UsuarioDto>().AfterMap((s, d) =>
+            {
+               
+                d.Senha = "xxxxxxxxx";
+
+            }); ;
+
+
         }
     }
 }
