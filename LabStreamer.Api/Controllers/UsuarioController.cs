@@ -1,5 +1,5 @@
-﻿using LabStreamer.Application.Contas;
-using LabStreamer.Application.Contas.Request;
+﻿using LabStreamer.Application.Dto;
+using LabStreamer.Application.Service;
 using LabStreamer.Domain.Conta.Agreggates;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

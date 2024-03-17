@@ -1,8 +1,8 @@
-using LabStreamer.Application.Contas.Profile;
-using LabStreamer.Application.Contas;
-using LabStreamer.Repository;
 using LabStreamer.Repository.Repository;
 using Microsoft.EntityFrameworkCore;
+using LabStreamer.Application.Profile;
+using LabStreamer.Repository.Context;
+using LabStreamer.Application.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 

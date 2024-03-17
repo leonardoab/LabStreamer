@@ -1,5 +1,5 @@
-﻿using LabStreamer.Domain.Streamer.Agreggates;
-using LabStreamer.Repository;
+﻿using LabStreamer.Domain.Domains;
+using LabStreamer.Repository.Context;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

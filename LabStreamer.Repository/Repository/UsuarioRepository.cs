@@ -1,4 +1,5 @@
-﻿using LabStreamer.Domain.Conta.Agreggates;
+﻿using LabStreamer.Domain.Domains;
+using LabStreamer.Repository.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
