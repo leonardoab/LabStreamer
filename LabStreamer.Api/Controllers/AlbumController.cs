@@ -1,7 +1,6 @@
 ﻿using LabStreamer.Application.Dto;
 using LabStreamer.Application.Service;
 using LabStreamer.Domain.Domains;
-using LabStreamer.Repository.Context;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,26 +8,24 @@ namespace LabStreamer.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BandaController : ControllerBase
+    public class AlbumController : ControllerBase
     {
+        private AlbumService _albumService;
 
-
-        private BandaService _bandaService;
-
-        public BandaController(BandaService bandaService)
+        public AlbumController(AlbumService albumService)
         {
-            _bandaService = bandaService;
+            _albumService = albumService;
         }
 
 
         [HttpPost]
         [Route("Criar")]
-        public IActionResult Criar(BandaDto dto)
+        public IActionResult Criar(AlbumDto dto)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.Criar(dto);
+            var result = this._albumService.Criar(dto);
 
             return Ok();
 
@@ -36,12 +33,12 @@ namespace LabStreamer.Api.Controllers
 
         [HttpPost]
         [Route("Editar")]
-        public IActionResult Editar(BandaDto dto, Guid id)
+        public IActionResult Editar(AlbumDto dto, Guid id)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.Editar(dto,id);
+            var result = this._albumService.Editar(dto,id);
 
             return Ok();
 
@@ -54,9 +51,9 @@ namespace LabStreamer.Api.Controllers
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.Deletar(id);
+            bool result = this._albumService.Deletar(id);
 
-            return Ok();
+            return Ok(result);
 
         }
 
@@ -67,7 +64,7 @@ namespace LabStreamer.Api.Controllers
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.BuscarPorId(id);
+            var result = this._albumService.BuscarPorId(id);
 
             return Ok(result);
 
@@ -80,40 +77,24 @@ namespace LabStreamer.Api.Controllers
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.BuscarPorParteNome(partenome);
+            var result = this._albumService.BuscarPorParteNome(partenome);
 
             return Ok(result);
 
         }
 
-
         [HttpPost]
-        [Route("AssociarBandaAlbum")]
-        public IActionResult AssociarBandaAlbum(Guid idBanda, Guid idAlbum)
+        [Route("AssociarMusicaAlbum")]
+        public IActionResult AssociarMusicaAlbum(Guid idMusica, Guid idAlbum)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.AssociarBandaAlbum(idBanda, idAlbum);
+            var result = this._albumService.AssociarMusicaAlbum(idMusica, idAlbum);
 
             return Ok();
 
         }
-
-        [HttpPost]
-        [Route("AssociarBandaMusica")]
-        public IActionResult AssociarMusicaBanda(Guid idMusica, Guid idBanda)
-        {
-
-            if (ModelState is { IsValid: false }) return BadRequest();
-
-            var result = this._bandaService.AssociarMusicaBanda(idMusica, idBanda);
-
-            return Ok();
-
-        }
-
-
 
 
     }

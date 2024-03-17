@@ -14,15 +14,15 @@ namespace LabStreamer.Application.Service
     {
         private IMapper Mapper { get; set; }
         private UsuarioRepository UsuarioRepository { get; set; }
+        private ListaFavoritaRepository ListaFavoritaRepository { get; set; }
 
 
-        public UsuarioService(IMapper mapper, UsuarioRepository usuarioRepository)
+        public UsuarioService(IMapper mapper, UsuarioRepository usuarioRepository, ListaFavoritaRepository listaFavoritaRepository)
         {
             Mapper = mapper;
             UsuarioRepository = usuarioRepository;
+            ListaFavoritaRepository = listaFavoritaRepository;
         }
-
-
 
 
         public UsuarioDto Criar(UsuarioDto dto)
@@ -49,6 +49,74 @@ namespace LabStreamer.Application.Service
             return result;
 
         }
+        
+
+        public UsuarioDto Editar(UsuarioDto dto, Guid id)
+        {
+            Usuario Usuario = Mapper.Map<Usuario>(dto);
+
+            Usuario.Id = id;
+
+            UsuarioRepository.Update(Usuario);
+
+            var result = Mapper.Map<UsuarioDto>(Usuario);
+
+            return result;
+
+        }
+
+        public bool Deletar(Guid id)
+        {
+            Usuario Usuario = UsuarioRepository.GetById(id);
+
+            UsuarioRepository.Delete(Usuario);
+
+
+            return true;
+
+        }
+
+        public UsuarioDto BuscarPorId(Guid id)
+        {
+            Usuario Usuario = UsuarioRepository.GetById(id);
+
+            var result = Mapper.Map<UsuarioDto>(Usuario);
+
+            return result;
+
+        }
+
+        public List<Usuario> BuscarPorParteNome(string partenome)
+        {
+            var listaAlbuns = UsuarioRepository.Find(x => x.Nome.Contains(partenome)).ToList();
+
+            return (List<Usuario>)listaAlbuns;
+
+        }
+
+        public Usuario AssociarUsuarioListaFavorita(Guid idUsuario, Guid idListaFavorita)
+        {
+
+
+            ListaFavorita listaFavorita = ListaFavoritaRepository.GetById(idListaFavorita);
+
+            Usuario usuario = UsuarioRepository.GetById(idUsuario);
+
+            if (usuario.ListaFavoritas is null)
+            {
+                usuario.ListaFavoritas = new List<ListaFavorita>();
+            }
+
+            usuario.ListaFavoritas.Add(listaFavorita);
+
+            UsuarioRepository.Update(usuario);
+
+            return usuario;
+
+
+        }
+
+
 
 
 

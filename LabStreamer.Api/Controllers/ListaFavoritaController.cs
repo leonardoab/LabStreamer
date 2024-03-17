@@ -1,7 +1,5 @@
 ﻿using LabStreamer.Application.Dto;
 using LabStreamer.Application.Service;
-using LabStreamer.Domain.Domains;
-using LabStreamer.Repository.Context;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,26 +7,24 @@ namespace LabStreamer.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BandaController : ControllerBase
+    public class ListaFavoritaController : ControllerBase
     {
+        private ListaFavoritaService _listaFavoritaService;
 
-
-        private BandaService _bandaService;
-
-        public BandaController(BandaService bandaService)
+        public ListaFavoritaController(ListaFavoritaService listaFavoritaService)
         {
-            _bandaService = bandaService;
+            _listaFavoritaService = listaFavoritaService;
         }
 
 
         [HttpPost]
         [Route("Criar")]
-        public IActionResult Criar(BandaDto dto)
+        public IActionResult Criar(ListaFavoritaDto dto)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.Criar(dto);
+            var result = this._listaFavoritaService.Criar(dto);
 
             return Ok();
 
@@ -36,12 +32,12 @@ namespace LabStreamer.Api.Controllers
 
         [HttpPost]
         [Route("Editar")]
-        public IActionResult Editar(BandaDto dto, Guid id)
+        public IActionResult Editar(ListaFavoritaDto dto, Guid id)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.Editar(dto,id);
+            var result = this._listaFavoritaService.Editar(dto,id);
 
             return Ok();
 
@@ -54,11 +50,12 @@ namespace LabStreamer.Api.Controllers
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.Deletar(id);
+            var result = this._listaFavoritaService.Deletar(id);
 
             return Ok();
 
         }
+
 
         [HttpGet]
         [Route("BuscarPorId")]
@@ -67,7 +64,7 @@ namespace LabStreamer.Api.Controllers
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.BuscarPorId(id);
+            var result = this._listaFavoritaService.BuscarPorId(id);
 
             return Ok(result);
 
@@ -80,41 +77,23 @@ namespace LabStreamer.Api.Controllers
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.BuscarPorParteNome(partenome);
+            var result = this._listaFavoritaService.BuscarPorParteNome(partenome);
 
             return Ok(result);
 
         }
 
-
         [HttpPost]
-        [Route("AssociarBandaAlbum")]
-        public IActionResult AssociarBandaAlbum(Guid idBanda, Guid idAlbum)
+        [Route("AssociarMusicaListaFavorita")]
+        public IActionResult AssociarMusicaListaFavorita(Guid idMusica, Guid idListaFavorita)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._bandaService.AssociarBandaAlbum(idBanda, idAlbum);
+            var result = this._listaFavoritaService.AssociarMusicaListaFavorita(idMusica, idListaFavorita);
 
             return Ok();
 
         }
-
-        [HttpPost]
-        [Route("AssociarBandaMusica")]
-        public IActionResult AssociarMusicaBanda(Guid idMusica, Guid idBanda)
-        {
-
-            if (ModelState is { IsValid: false }) return BadRequest();
-
-            var result = this._bandaService.AssociarMusicaBanda(idMusica, idBanda);
-
-            return Ok();
-
-        }
-
-
-
-
     }
 }

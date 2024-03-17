@@ -26,7 +26,7 @@ namespace LabStreamer.Domain.Domains
 
         }
 
-        public List<ListaFavorita> ListaFavoritas { get; set; } = new List<ListaFavorita>();
+        public List<ListaFavorita> ListaFavoritas { get; set; } 
 
         private string CriptografarSenha(string senha)
         {

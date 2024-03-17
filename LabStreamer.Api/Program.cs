@@ -22,26 +22,36 @@ builder.Services.AddDbContext<LabStreamerContext>(options =>
     options.UseSqlServer(connectionString, b => b.MigrationsAssembly("LabStreamer.Api"));
 });
 
+builder.Services.AddAutoMapper(typeof(AlbumProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(BandaProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(ListaFavoritaProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(MusicaProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
 
 
 //Repositories
+builder.Services.AddScoped<AlbumRepository>();
+builder.Services.AddScoped<BandaRepository>();
+builder.Services.AddScoped<ListaFavoritaRepository>();
+builder.Services.AddScoped<MusicaRepository>();
 builder.Services.AddScoped<UsuarioRepository>();
-//builder.Services.AddScoped<PlanoRepository>();
-//builder.Services.AddScoped<BandaRepository>();
+
 
 //Services
+builder.Services.AddScoped<AlbumService>();
+builder.Services.AddScoped<BandaService>();
+builder.Services.AddScoped<ListaFavoritaService>();
+builder.Services.AddScoped<MusicaService>();
 builder.Services.AddScoped<UsuarioService>();
 //builder.Services.AddScoped<BandaService>();
 
 var app = builder.Build();
 
 // Configure o pipeline de solicitação HTTP.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
