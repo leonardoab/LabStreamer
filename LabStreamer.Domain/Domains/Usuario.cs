@@ -17,11 +17,11 @@ namespace LabStreamer.Domain.Domains
         public bool Ativo { get; set; }
         public DateTime DataCriacao { get; set; }
         public Guid PlanoId { get; set; }
-        public Plano Plano { get; set; }
+        public virtual Plano Plano { get; set; }
 
 
 
-        public List<ListaFavorita> ListaFavoritas { get; set; }
+        public virtual IList<ListaFavorita> ListaFavoritas { get; set; }
 
         public void CriarUsuario(string nome, string email, string senha)
         {

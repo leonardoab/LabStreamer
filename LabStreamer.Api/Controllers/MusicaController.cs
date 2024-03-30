@@ -90,9 +90,9 @@ namespace LabStreamer.Api.Controllers
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-           // var result = this._musicaService.BuscarTodasMusicas();
+            var result = this._musicaService.BuscarTodasMusicas();
 
-            return Ok();
+            return Ok(result);
 
         }
 

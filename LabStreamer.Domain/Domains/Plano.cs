@@ -12,6 +12,6 @@ namespace LabStreamer.Domain.Domains
         public string Nome { get; set; }
         public float Valor { get; set; }
 
-        public List<Usuario> Usuarios { get; set; }
+        public virtual IList<Usuario> Usuarios { get; set; }
     }
 }

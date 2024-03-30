@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using LabStreamer.Repository.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace LabStreamer.Repository.Repository
 {

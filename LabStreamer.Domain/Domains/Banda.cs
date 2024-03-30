@@ -5,9 +5,9 @@
         public Guid Id { get; set; }
         public string Nome { get; set; }
 
-        public List<Album> Albuns { get; set; } 
-        public List<Musica> Musicas { get; set; } 
+        public virtual IList<Album> Albuns { get; set; } = new List<Album>();
+        public virtual IList<Musica> Musicas { get; set; } = new List<Musica>();
 
-      
+
     }
 }

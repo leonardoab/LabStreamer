@@ -12,7 +12,7 @@ namespace LabStreamer.Domain.Domains
         public string Nome { get; set; }
         public DateTime DataCriacao { get; set; }
 
-        public List<Musica> Musicas  { get; set; }
+        public virtual IList<Musica> Musicas  { get; set; }
 
 
     }

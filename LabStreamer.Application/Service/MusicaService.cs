@@ -79,9 +79,9 @@ namespace LabStreamer.Application.Service
 
         }
 
-       /* public List<MusicaCompletaDto> BuscarTodasMusicas()
+        public List<MusicaCompletaDto> BuscarTodasMusicas()
         {
-            IEnumerable<Banda> todasBandas = BandaRepository.BuscarTodasMusicas();
+            IEnumerable<Banda> todasBandas = BandaRepository.GetAll();
 
             List<MusicaCompletaDto> listaMusicaCompleta = new List<MusicaCompletaDto>();
 
@@ -93,7 +93,7 @@ namespace LabStreamer.Application.Service
                     {
                         MusicaCompletaDto MusicaCompletaDto = new MusicaCompletaDto();
 
-                        MusicaCompletaDto.idMusica = itemMusica.IdMusica;
+                        MusicaCompletaDto.idMusica = itemMusica.Id;
                         MusicaCompletaDto.DuracaoMusica = itemMusica.Duracao;
                         MusicaCompletaDto.NomeMusica = itemMusica.Nome;
                         MusicaCompletaDto.idAbum = itemAlbum.Id;
@@ -112,7 +112,7 @@ namespace LabStreamer.Application.Service
             }
 
             return listaMusicaCompleta;
-        }*/
+        }
 
 
 

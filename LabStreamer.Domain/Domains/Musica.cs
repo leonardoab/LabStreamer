@@ -13,7 +13,7 @@ namespace LabStreamer.Domain.Domains
         public string Nome { get; set; }
         public string Duracao { get; set; }
         //
-        public List<ListaFavorita> ListaFavoritas { get; set; }
+        public virtual IList<ListaFavorita> ListaFavoritas { get; set; } = new List<ListaFavorita>();
 
     }
 }

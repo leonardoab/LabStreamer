@@ -11,7 +11,7 @@ namespace LabStreamer.Domain.Domains
         public Guid Id { get; set; }
         public string Nome { get; set; }
 
-        public List<Musica> Musicas { get; set; }
+        public virtual IList<Musica> Musicas { get; set; }
 
     }
 }

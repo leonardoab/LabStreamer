@@ -13,13 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connectionString = builder.Configuration.GetConnectionString("LabStreamerConnection");
-
-
-builder.Services.AddDbContext<LabStreamerContext>(options =>
+builder.Services.AddDbContext<LabStreamerContext>(c =>
 {
-    // Defina a montagem de migrações correta aqui
-    options.UseSqlServer(connectionString, b => b.MigrationsAssembly("LabStreamer.Api"));
+    c.UseLazyLoadingProxies()
+     .UseSqlServer(builder.Configuration.GetConnectionString("LabStreamerConnection"));
 });
 
 builder.Services.AddAutoMapper(typeof(AlbumProfile).Assembly);
@@ -27,6 +24,7 @@ builder.Services.AddAutoMapper(typeof(BandaProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(ListaFavoritaProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(MusicaProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(PlanoProfile).Assembly);
 
 
 //Repositories
@@ -35,6 +33,7 @@ builder.Services.AddScoped<BandaRepository>();
 builder.Services.AddScoped<ListaFavoritaRepository>();
 builder.Services.AddScoped<MusicaRepository>();
 builder.Services.AddScoped<UsuarioRepository>();
+builder.Services.AddScoped<PlanoRepository>();
 
 
 //Services
@@ -43,6 +42,7 @@ builder.Services.AddScoped<BandaService>();
 builder.Services.AddScoped<ListaFavoritaService>();
 builder.Services.AddScoped<MusicaService>();
 builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<PlanoService>();
 //builder.Services.AddScoped<BandaService>();
 
 var app = builder.Build();

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace LabStreamer.Repository.Repository
 {
     public class BandaRepository : RepositoryBase<Banda>
@@ -19,17 +20,6 @@ namespace LabStreamer.Repository.Repository
         {
             Context = context;
         }
-
-        public IEnumerable<Banda> BuscarTodasMusicas()
-        {
-            return this.Context.Bandas
-                       .Include(x => x.Albuns) //Caso não esteja usando lazy loading
-                       .Include(x => x.Musicas);
-                       
-                      
-                       
-        }
-
 
 
     }
