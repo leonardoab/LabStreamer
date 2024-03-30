@@ -16,14 +16,18 @@ namespace LabStreamer.Repository.Mapping
         {
             builder.ToTable(nameof(Usuario));
 
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.IdUsuario);
+            builder.Property(x => x.IdUsuario).ValueGeneratedOnAdd();
             builder.Property(x => x.Email).IsRequired();
             builder.Property(x => x.Senha).IsRequired();
             builder.Property(x => x.Ativo).IsRequired();
             builder.Property(x => x.DataCriacao).IsRequired();
 
             //builder.HasOne(x => x.ListaFavoritas).WithMany();
+
+
+
+
 
 
 

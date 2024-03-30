@@ -9,7 +9,7 @@ namespace LabStreamer.Domain.Domains
 {
     public class Musica
     {
-        public Guid Id { get; set; }
+        public Guid IdMusica { get; set; }
         public string Nome { get; set; }
         public string Duracao { get; set; }
         //

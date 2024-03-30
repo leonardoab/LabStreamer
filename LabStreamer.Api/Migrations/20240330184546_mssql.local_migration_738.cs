@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LabStreamer.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class mssqllocal_migration_810 : Migration
+    public partial class mssqllocal_migration_738 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,19 +15,32 @@ namespace LabStreamer.Api.Migrations
                 name: "Banda",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdBanda = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Banda", x => x.Id);
+                    table.PrimaryKey("PK_Banda", x => x.IdBanda);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Plano",
+                columns: table => new
+                {
+                    IdPlano = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Valor = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Plano", x => x.IdPlano);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Usuario",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -36,118 +49,119 @@ namespace LabStreamer.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuario", x => x.Id);
+                    table.PrimaryKey("PK_Usuario", x => x.IdUsuario);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Album",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdAlbum = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DataCriacao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BandaId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    BandaIdBanda = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Album", x => x.Id);
+                    table.PrimaryKey("PK_Album", x => x.IdAlbum);
                     table.ForeignKey(
-                        name: "FK_Album_Banda_BandaId",
-                        column: x => x.BandaId,
+                        name: "FK_Album_Banda_BandaIdBanda",
+                        column: x => x.BandaIdBanda,
                         principalTable: "Banda",
-                        principalColumn: "Id");
+                        principalColumn: "IdBanda");
                 });
 
             migrationBuilder.CreateTable(
                 name: "ListaFavorita",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdListaFavorita = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    UsuarioIdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ListaFavorita", x => x.Id);
+                    table.PrimaryKey("PK_ListaFavorita", x => x.IdListaFavorita);
                     table.ForeignKey(
-                        name: "FK_ListaFavorita_Usuario_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_ListaFavorita_Usuario_UsuarioIdUsuario",
+                        column: x => x.UsuarioIdUsuario,
                         principalTable: "Usuario",
-                        principalColumn: "Id");
+                        principalColumn: "IdUsuario");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Musica",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdMusica = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AlbumId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    BandaId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Duracao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AlbumIdAlbum = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    BandaIdBanda = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Musica", x => x.Id);
+                    table.PrimaryKey("PK_Musica", x => x.IdMusica);
                     table.ForeignKey(
-                        name: "FK_Musica_Album_AlbumId",
-                        column: x => x.AlbumId,
+                        name: "FK_Musica_Album_AlbumIdAlbum",
+                        column: x => x.AlbumIdAlbum,
                         principalTable: "Album",
-                        principalColumn: "Id");
+                        principalColumn: "IdAlbum");
                     table.ForeignKey(
-                        name: "FK_Musica_Banda_BandaId",
-                        column: x => x.BandaId,
+                        name: "FK_Musica_Banda_BandaIdBanda",
+                        column: x => x.BandaIdBanda,
                         principalTable: "Banda",
-                        principalColumn: "Id");
+                        principalColumn: "IdBanda");
                 });
 
             migrationBuilder.CreateTable(
                 name: "ListaFavoritaMusica",
                 columns: table => new
                 {
-                    ListaFavoritasId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MusicasId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ListaFavoritasIdListaFavorita = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MusicasIdMusica = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ListaFavoritaMusica", x => new { x.ListaFavoritasId, x.MusicasId });
+                    table.PrimaryKey("PK_ListaFavoritaMusica", x => new { x.ListaFavoritasIdListaFavorita, x.MusicasIdMusica });
                     table.ForeignKey(
-                        name: "FK_ListaFavoritaMusica_ListaFavorita_ListaFavoritasId",
-                        column: x => x.ListaFavoritasId,
+                        name: "FK_ListaFavoritaMusica_ListaFavorita_ListaFavoritasIdListaFavorita",
+                        column: x => x.ListaFavoritasIdListaFavorita,
                         principalTable: "ListaFavorita",
-                        principalColumn: "Id",
+                        principalColumn: "IdListaFavorita",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ListaFavoritaMusica_Musica_MusicasId",
-                        column: x => x.MusicasId,
+                        name: "FK_ListaFavoritaMusica_Musica_MusicasIdMusica",
+                        column: x => x.MusicasIdMusica,
                         principalTable: "Musica",
-                        principalColumn: "Id",
+                        principalColumn: "IdMusica",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Album_BandaId",
+                name: "IX_Album_BandaIdBanda",
                 table: "Album",
-                column: "BandaId");
+                column: "BandaIdBanda");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ListaFavorita_UsuarioId",
+                name: "IX_ListaFavorita_UsuarioIdUsuario",
                 table: "ListaFavorita",
-                column: "UsuarioId");
+                column: "UsuarioIdUsuario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ListaFavoritaMusica_MusicasId",
+                name: "IX_ListaFavoritaMusica_MusicasIdMusica",
                 table: "ListaFavoritaMusica",
-                column: "MusicasId");
+                column: "MusicasIdMusica");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Musica_AlbumId",
+                name: "IX_Musica_AlbumIdAlbum",
                 table: "Musica",
-                column: "AlbumId");
+                column: "AlbumIdAlbum");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Musica_BandaId",
+                name: "IX_Musica_BandaIdBanda",
                 table: "Musica",
-                column: "BandaId");
+                column: "BandaIdBanda");
         }
 
         /// <inheritdoc />
@@ -155,6 +169,9 @@ namespace LabStreamer.Api.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ListaFavoritaMusica");
+
+            migrationBuilder.DropTable(
+                name: "Plano");
 
             migrationBuilder.DropTable(
                 name: "ListaFavorita");

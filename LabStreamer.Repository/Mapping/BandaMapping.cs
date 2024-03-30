@@ -15,8 +15,8 @@ namespace LabStreamer.Repository.Mapping
         {
             builder.ToTable(nameof(Banda));
 
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.IdBanda);
+            builder.Property(x => x.IdBanda).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired();
 
             builder.HasMany(x => x.Albuns).WithOne(); // Relação opcional

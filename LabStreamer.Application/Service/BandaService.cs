@@ -43,7 +43,7 @@ namespace LabStreamer.Application.Service
         {
             Banda Banda = Mapper.Map<Banda>(dto);
 
-            Banda.Id = id;
+            Banda.IdBanda = id;
 
             BandaRepository.Update(Banda);
 

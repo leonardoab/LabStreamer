@@ -9,15 +9,16 @@ namespace LabStreamer.Domain.Domains
 {
     public class Usuario
     {
-        public Guid Id { get; set; }
+        public Guid IdUsuario { get; set; }
 
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
         public bool Ativo { get; set; }
         public DateTime DataCriacao { get; set; }
+        //public Plano Plano { get; set; }
 
-        public Plano Plano { get; set; }
+        
 
         public List<ListaFavorita> ListaFavoritas { get; set; }
 

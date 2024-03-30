@@ -40,7 +40,7 @@ namespace LabStreamer.Application.Service
         {
             ListaFavorita ListaFavorita = Mapper.Map<ListaFavorita>(dto);
 
-            ListaFavorita.Id = id;
+            ListaFavorita.IdListaFavorita = id;
 
             ListaFavoritaRepository.Update(ListaFavorita);
 
