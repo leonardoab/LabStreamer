@@ -126,6 +126,15 @@ namespace LabStreamer.Application.Service
 
 
         }
+
+
+        public List<Banda> BuscarTodasBandas ()
+        {
+
+            List<Banda>  todasBandas = (List<Banda>)BandaRepository.GetAll();
+
+            return todasBandas;
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 ﻿using LabStreamer.Domain.Domains;
 using LabStreamer.Repository.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,16 @@ namespace LabStreamer.Repository.Repository
         public BandaRepository(LabStreamerContext context) : base(context)
         {
             Context = context;
+        }
+
+        public IEnumerable<Banda> BuscarTodasMusicas()
+        {
+            return this.Context.Bandas
+                       .Include(x => x.Albuns) //Caso não esteja usando lazy loading
+                       .Include(x => x.Musicas);
+                       
+                      
+                       
         }
 
 

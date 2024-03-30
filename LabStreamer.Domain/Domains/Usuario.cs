@@ -17,6 +17,10 @@ namespace LabStreamer.Domain.Domains
         public bool Ativo { get; set; }
         public DateTime DataCriacao { get; set; }
 
+        public Plano Plano { get; set; }
+
+        public List<ListaFavorita> ListaFavoritas { get; set; }
+
         public void CriarUsuario(string nome, string email, string senha)
         {
             Nome = nome;
@@ -26,7 +30,7 @@ namespace LabStreamer.Domain.Domains
 
         }
 
-        public List<ListaFavorita> ListaFavoritas { get; set; } 
+        
 
         private string CriptografarSenha(string senha)
         {

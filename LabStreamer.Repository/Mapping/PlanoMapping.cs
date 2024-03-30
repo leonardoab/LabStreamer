@@ -9,20 +9,19 @@ using System.Threading.Tasks;
 
 namespace LabStreamer.Repository.Mapping
 {
-    public class MusicaMapping : IEntityTypeConfiguration<Musica>
+    public class PlanoMapping : IEntityTypeConfiguration<Plano>
     {
-        public void Configure(EntityTypeBuilder<Musica> builder)
+        public void Configure(EntityTypeBuilder<Plano> builder)
         {
-            builder.ToTable(nameof(Musica));
+            builder.ToTable(nameof(Plano));
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired();
-            builder.Property(x => x.Duracao).IsRequired();
+            builder.Property(x => x.Valor).IsRequired();
 
+            builder.HasMany(x => x.Usuarios).WithOne(); // Relação opcional
+            
         }
     }
-
-
-
 }

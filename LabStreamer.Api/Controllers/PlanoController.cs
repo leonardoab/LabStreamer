@@ -1,5 +1,7 @@
 ﻿using LabStreamer.Application.Dto;
 using LabStreamer.Application.Service;
+using LabStreamer.Domain.Domains;
+using LabStreamer.Repository.Context;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,24 +9,26 @@ namespace LabStreamer.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MusicaController : ControllerBase
+    public class PlanoController : ControllerBase
     {
-        private MusicaService _musicaService;
 
-        public MusicaController(MusicaService musicaService)
+
+        private PlanoService _PlanoService;
+
+        public PlanoController(PlanoService PlanoService)
         {
-            _musicaService = musicaService;
+            _PlanoService = PlanoService;
         }
 
 
         [HttpPost]
         [Route("Criar")]
-        public IActionResult Criar(MusicaDto dto)
+        public IActionResult Criar(PlanoDto dto)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._musicaService.Criar(dto);
+            var result = this._PlanoService.Criar(dto);
 
             return Ok();
 
@@ -32,12 +36,12 @@ namespace LabStreamer.Api.Controllers
 
         [HttpPost]
         [Route("Editar")]
-        public IActionResult Editar(MusicaDto dto, Guid id)
+        public IActionResult Editar(PlanoDto dto, Guid id)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._musicaService.Editar(dto,id);
+            var result = this._PlanoService.Editar(dto,id);
 
             return Ok();
 
@@ -50,7 +54,7 @@ namespace LabStreamer.Api.Controllers
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._musicaService.Deletar(id);
+            var result = this._PlanoService.Deletar(id);
 
             return Ok();
 
@@ -63,7 +67,7 @@ namespace LabStreamer.Api.Controllers
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._musicaService.BuscarPorId(id);
+            var result = this._PlanoService.BuscarPorId(id);
 
             return Ok(result);
 
@@ -76,25 +80,15 @@ namespace LabStreamer.Api.Controllers
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._musicaService.BuscarPorParteNome(partenome);
+            var result = this._PlanoService.BuscarPorParteNome(partenome);
 
             return Ok(result);
 
         }
 
 
-        [HttpGet]
-        [Route("BuscaMusicasCompleto")]
-        public IActionResult BuscaMusicasCompleto()
-        {
+        
 
-            if (ModelState is { IsValid: false }) return BadRequest();
-
-            var result = this._musicaService.BuscarTodasMusicas();
-
-            return Ok(result);
-
-        }
 
 
 

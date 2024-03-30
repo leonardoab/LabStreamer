@@ -14,12 +14,14 @@ namespace LabStreamer.Application.Service
     {
         private IMapper Mapper { get; set; }
         private MusicaRepository MusicaRepository { get; set; }
+        private BandaRepository BandaRepository { get; set; }
 
 
-        public MusicaService(IMapper mapper, MusicaRepository musicaRepository)
+        public MusicaService(IMapper mapper, MusicaRepository musicaRepository, BandaRepository bandaRepository)
         {
             Mapper = mapper;
             MusicaRepository = musicaRepository;
+            BandaRepository = bandaRepository;
         }
 
         public MusicaDto Criar(MusicaDto dto)
@@ -75,6 +77,41 @@ namespace LabStreamer.Application.Service
 
             return (List<Musica>)listaAlbuns;
 
+        }
+
+        public List<MusicaCompletaDto> BuscarTodasMusicas()
+        {
+            IEnumerable<Banda> todasBandas = BandaRepository.BuscarTodasMusicas();
+
+            List<MusicaCompletaDto> listaMusicaCompleta = new List<MusicaCompletaDto>();
+
+            foreach (var itemBanda in todasBandas)
+            {
+                foreach (var itemAlbum in itemBanda.Albuns)
+                {
+                    foreach (var itemMusica in itemAlbum.Musicas)
+                    {
+                        MusicaCompletaDto MusicaCompletaDto = new MusicaCompletaDto();
+
+                        MusicaCompletaDto.idMusica = itemMusica.Id;
+                        MusicaCompletaDto.DuracaoMusica = itemMusica.Duracao;
+                        MusicaCompletaDto.NomeMusica = itemMusica.Nome;
+                        MusicaCompletaDto.idAbum = itemAlbum.Id;
+                        MusicaCompletaDto.NomeAlbum = itemAlbum.Nome;
+                        MusicaCompletaDto.idBanda = itemBanda.Id;
+                        MusicaCompletaDto.NomeBanda = itemBanda.Nome;
+                        MusicaCompletaDto.EstaFavorito = false;
+
+                        listaMusicaCompleta.Add(MusicaCompletaDto);
+
+
+
+                    }
+                }
+
+            }
+
+            return listaMusicaCompleta;
         }
 
 
