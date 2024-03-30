@@ -4,6 +4,7 @@ using LabStreamer.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabStreamer.Api.Migrations
 {
     [DbContext(typeof(LabStreamerContext))]
-    partial class LabStreamerContextModelSnapshot : ModelSnapshot
+    [Migration("20240330185238_mssql.local_migration_186")]
+    partial class mssqllocal_migration_186
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +27,11 @@ namespace LabStreamer.Api.Migrations
 
             modelBuilder.Entity("LabStreamer.Domain.Domains.Album", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdAlbum")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BandaId")
+                    b.Property<Guid?>("BandaIdBanda")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataCriacao")
@@ -38,16 +41,16 @@ namespace LabStreamer.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdAlbum");
 
-                    b.HasIndex("BandaId");
+                    b.HasIndex("BandaIdBanda");
 
                     b.ToTable("Album", (string)null);
                 });
 
             modelBuilder.Entity("LabStreamer.Domain.Domains.Banda", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdBanda")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -55,14 +58,14 @@ namespace LabStreamer.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdBanda");
 
                     b.ToTable("Banda", (string)null);
                 });
 
             modelBuilder.Entity("LabStreamer.Domain.Domains.ListaFavorita", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdListaFavorita")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -70,26 +73,26 @@ namespace LabStreamer.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UsuarioId")
+                    b.Property<Guid?>("UsuarioIdUsuario")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdListaFavorita");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UsuarioIdUsuario");
 
                     b.ToTable("ListaFavorita", (string)null);
                 });
 
             modelBuilder.Entity("LabStreamer.Domain.Domains.Musica", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdMusica")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AlbumId")
+                    b.Property<Guid?>("AlbumIdAlbum")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BandaId")
+                    b.Property<Guid?>("BandaIdBanda")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Duracao")
@@ -100,18 +103,18 @@ namespace LabStreamer.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdMusica");
 
-                    b.HasIndex("AlbumId");
+                    b.HasIndex("AlbumIdAlbum");
 
-                    b.HasIndex("BandaId");
+                    b.HasIndex("BandaIdBanda");
 
                     b.ToTable("Musica", (string)null);
                 });
 
             modelBuilder.Entity("LabStreamer.Domain.Domains.Plano", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdPlano")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -122,14 +125,14 @@ namespace LabStreamer.Api.Migrations
                     b.Property<float>("Valor")
                         .HasColumnType("real");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdPlano");
 
                     b.ToTable("Plano", (string)null);
                 });
 
             modelBuilder.Entity("LabStreamer.Domain.Domains.Usuario", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdUsuario")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -154,7 +157,7 @@ namespace LabStreamer.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdUsuario");
 
                     b.HasIndex("PlanoId");
 
@@ -163,15 +166,15 @@ namespace LabStreamer.Api.Migrations
 
             modelBuilder.Entity("ListaFavoritaMusica", b =>
                 {
-                    b.Property<Guid>("ListaFavoritasId")
+                    b.Property<Guid>("ListaFavoritasIdListaFavorita")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("MusicasId")
+                    b.Property<Guid>("MusicasIdMusica")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("ListaFavoritasId", "MusicasId");
+                    b.HasKey("ListaFavoritasIdListaFavorita", "MusicasIdMusica");
 
-                    b.HasIndex("MusicasId");
+                    b.HasIndex("MusicasIdMusica");
 
                     b.ToTable("ListaFavoritaMusica");
                 });
@@ -180,25 +183,25 @@ namespace LabStreamer.Api.Migrations
                 {
                     b.HasOne("LabStreamer.Domain.Domains.Banda", null)
                         .WithMany("Albuns")
-                        .HasForeignKey("BandaId");
+                        .HasForeignKey("BandaIdBanda");
                 });
 
             modelBuilder.Entity("LabStreamer.Domain.Domains.ListaFavorita", b =>
                 {
                     b.HasOne("LabStreamer.Domain.Domains.Usuario", null)
                         .WithMany("ListaFavoritas")
-                        .HasForeignKey("UsuarioId");
+                        .HasForeignKey("UsuarioIdUsuario");
                 });
 
             modelBuilder.Entity("LabStreamer.Domain.Domains.Musica", b =>
                 {
                     b.HasOne("LabStreamer.Domain.Domains.Album", null)
                         .WithMany("Musicas")
-                        .HasForeignKey("AlbumId");
+                        .HasForeignKey("AlbumIdAlbum");
 
                     b.HasOne("LabStreamer.Domain.Domains.Banda", null)
                         .WithMany("Musicas")
-                        .HasForeignKey("BandaId");
+                        .HasForeignKey("BandaIdBanda");
                 });
 
             modelBuilder.Entity("LabStreamer.Domain.Domains.Usuario", b =>
@@ -216,13 +219,13 @@ namespace LabStreamer.Api.Migrations
                 {
                     b.HasOne("LabStreamer.Domain.Domains.ListaFavorita", null)
                         .WithMany()
-                        .HasForeignKey("ListaFavoritasId")
+                        .HasForeignKey("ListaFavoritasIdListaFavorita")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LabStreamer.Domain.Domains.Musica", null)
                         .WithMany()
-                        .HasForeignKey("MusicasId")
+                        .HasForeignKey("MusicasIdMusica")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

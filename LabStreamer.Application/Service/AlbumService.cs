@@ -41,7 +41,7 @@ namespace LabStreamer.Application.Service
         {
             Album album = Mapper.Map<Album>(dto);
 
-            album.IdAlbum = id;
+            album.Id = id;
 
             AlbumRepository.Update(album);
 

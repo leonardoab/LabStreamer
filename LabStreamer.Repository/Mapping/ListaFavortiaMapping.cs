@@ -16,8 +16,8 @@ namespace LabStreamer.Repository.Mapping
         {
             builder.ToTable(nameof(ListaFavorita));
 
-            builder.HasKey(x => x.IdListaFavorita);
-            builder.Property(x => x.IdListaFavorita).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired();
 
             //builder.HasMany(a => a.Musicas).WithOne(); // Especifica o relacionamento de Album para Musicas

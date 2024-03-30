@@ -55,7 +55,7 @@ namespace LabStreamer.Application.Service
         {
             Usuario Usuario = Mapper.Map<Usuario>(dto);
 
-            Usuario.IdUsuario = id;
+            Usuario.Id = id;
 
             UsuarioRepository.Update(Usuario);
 

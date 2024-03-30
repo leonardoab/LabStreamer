@@ -8,7 +8,7 @@ namespace LabStreamer.Domain.Domains
 {
     public class ListaFavorita
     {
-        public Guid IdListaFavorita { get; set; }
+        public Guid Id { get; set; }
         public string Nome { get; set; }
 
         public List<Musica> Musicas { get; set; }

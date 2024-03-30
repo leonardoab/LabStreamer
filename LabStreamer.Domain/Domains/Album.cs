@@ -8,7 +8,7 @@ namespace LabStreamer.Domain.Domains
 {
     public class Album
     {
-        public Guid IdAlbum { get; set; }
+        public Guid Id { get; set; }
         public string Nome { get; set; }
         public DateTime DataCriacao { get; set; }
 

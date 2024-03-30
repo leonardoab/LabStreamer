@@ -40,7 +40,7 @@ namespace LabStreamer.Application.Service
         {
             Musica Musica = Mapper.Map<Musica>(dto);
 
-            Musica.IdMusica = id;
+            Musica.Id = id;
 
             MusicaRepository.Update(Musica);
 

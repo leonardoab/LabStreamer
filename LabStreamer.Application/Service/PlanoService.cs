@@ -43,7 +43,7 @@ namespace LabStreamer.Application.Service
         {
             Plano Plano = Mapper.Map<Plano>(dto);
 
-            Plano.IdPlano = id;
+            Plano.Id = id;
 
             PlanoRepository.Update(Plano);
 

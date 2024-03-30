@@ -15,13 +15,15 @@ namespace LabStreamer.Repository.Mapping
         {
             builder.ToTable(nameof(Plano));
 
-            builder.HasKey(x => x.IdPlano);
-            builder.Property(x => x.IdPlano).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome).IsRequired();
             builder.Property(x => x.Valor).IsRequired();
 
-           // builder.HasMany(x => x.Usuarios).WithOne(); // Relação opcional
-            
+            builder.HasMany(p => p.Usuarios)
+                .WithOne(u => u.Plano)
+                .HasForeignKey(u => u.PlanoId);
+
         }
     }
 }
