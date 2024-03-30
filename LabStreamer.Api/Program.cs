@@ -13,11 +13,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 builder.Services.AddDbContext<LabStreamerContext>(c =>
 {
     c.UseLazyLoadingProxies()
-     .UseSqlServer(builder.Configuration.GetConnectionString("LabStreamerConnection"));
+     .UseSqlServer(builder.Configuration.GetConnectionString("LabStreamerConnection"), b => b.MigrationsAssembly("LabStreamer.Api"));
 });
+
+
 
 builder.Services.AddAutoMapper(typeof(AlbumProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(BandaProfile).Assembly);
