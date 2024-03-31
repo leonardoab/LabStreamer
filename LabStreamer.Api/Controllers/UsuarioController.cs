@@ -18,12 +18,12 @@ namespace LabStreamer.Api.Controllers
 
         [HttpPost]
         [Route("Criar")]
-        public IActionResult Criar(UsuarioDto dto)
+        public IActionResult Criar(UsuarioDto dto,Guid idPlano)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._usuarioService.Criar(dto);
+            var result = this._usuarioService.Criar(dto, idPlano);
 
             return Ok(result);
 

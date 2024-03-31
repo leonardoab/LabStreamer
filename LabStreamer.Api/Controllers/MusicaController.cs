@@ -85,12 +85,12 @@ namespace LabStreamer.Api.Controllers
 
         [HttpGet]
         [Route("BuscaMusicasCompleto")]
-        public IActionResult BuscaMusicasCompleto()
+        public IActionResult BuscaMusicasCompleto(Guid id)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._musicaService.BuscarTodasMusicas();
+            var result = this._musicaService.BuscarTodasMusicas(id);
 
             return Ok(result);
 

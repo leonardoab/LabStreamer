@@ -19,12 +19,13 @@ namespace LabStreamer.Application.Service
         private MusicaRepository MusicaRepository { get; set; }
 
 
-        public PlanoService(IMapper mapper, PlanoRepository PlanoRepository, AlbumRepository albumRepository, MusicaRepository musicaRepository)
+        public PlanoService(IMapper mapper, AlbumRepository albumRepository, MusicaRepository musicaRepository, PlanoRepository planoRepository)
         {
             Mapper = mapper;
-            PlanoRepository = PlanoRepository;
+            
             AlbumRepository = albumRepository;
             MusicaRepository = musicaRepository;
+            PlanoRepository = planoRepository;
         }
 
         public PlanoDto Criar(PlanoDto dto)
@@ -76,16 +77,36 @@ namespace LabStreamer.Application.Service
 
         public List<Plano> BuscarPorParteNome(string partenome)
         {
-            var listaAlbuns = PlanoRepository.Find(x => x.Nome.Contains(partenome)).ToList();
+            var listaPlanos = PlanoRepository.Find(x => x.Nome.Contains(partenome)).ToList();
 
-            return (List<Plano>)listaAlbuns;
+            return (List<Plano>)listaPlanos;
 
         }
 
-        
+        public List<PlanoDto> BuscarTodosPlanos()
+        {
+            var listaPlanos = PlanoRepository.GetAll();
+
+            List<PlanoDto> listaPlanoDto = new List<PlanoDto>();
+
+            foreach (var item in listaPlanos)
+            {
+
+                PlanoDto planoDto = Mapper.Map<PlanoDto>(item);
+                listaPlanoDto.Add(planoDto);
+
+            }   
+
+          
+
+            return listaPlanoDto;
+
+        }
 
 
-        
+
+
+
     }
 
 }

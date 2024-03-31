@@ -15,17 +15,19 @@ namespace LabStreamer.Application.Service
         private IMapper Mapper { get; set; }
         private UsuarioRepository UsuarioRepository { get; set; }
         private ListaFavoritaRepository ListaFavoritaRepository { get; set; }
+        private PlanoRepository PlanoRepository { get; set; }
 
 
-        public UsuarioService(IMapper mapper, UsuarioRepository usuarioRepository, ListaFavoritaRepository listaFavoritaRepository)
+        public UsuarioService(IMapper mapper, UsuarioRepository usuarioRepository, ListaFavoritaRepository listaFavoritaRepository, PlanoRepository planoRepository)
         {
             Mapper = mapper;
             UsuarioRepository = usuarioRepository;
             ListaFavoritaRepository = listaFavoritaRepository;
+            PlanoRepository = planoRepository;
         }
 
 
-        public UsuarioDto Criar(UsuarioDto dto)
+        public UsuarioDto Criar(UsuarioDto dto, Guid idPlano)
         {
 
             if (UsuarioRepository.Exists(x => x.Email == dto.Email))
@@ -41,6 +43,12 @@ namespace LabStreamer.Application.Service
             usuario.DataCriacao = DateTime.Now;
 
             usuario.Ativo = true;
+
+            Plano plano  = PlanoRepository.GetById(idPlano);
+            
+            usuario.Plano = plano;
+
+            usuario.PlanoId = plano.Id;
 
             UsuarioRepository.Save(usuario);
 

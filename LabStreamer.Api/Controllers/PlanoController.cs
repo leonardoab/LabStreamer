@@ -86,8 +86,21 @@ namespace LabStreamer.Api.Controllers
 
         }
 
+        [HttpGet]
+        [Route("BuscarTodosPlanos")]
+        public IActionResult BuscarTodosPlanos()
+        {
 
-        
+            if (ModelState is { IsValid: false }) return BadRequest();
+
+            var result = this._PlanoService.BuscarTodosPlanos();
+
+            return Ok(result);
+
+        }
+
+
+
 
 
 

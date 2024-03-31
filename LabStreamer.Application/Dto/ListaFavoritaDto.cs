@@ -9,6 +9,9 @@ namespace LabStreamer.Application.Dto
 {
     public class ListaFavoritaDto
     {
+
+        public Guid Id { get; set; }
+
         [Required]
         public string Nome { get; set; }
     }

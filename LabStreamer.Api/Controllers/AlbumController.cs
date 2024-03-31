@@ -27,7 +27,7 @@ namespace LabStreamer.Api.Controllers
 
             var result = this._albumService.Criar(dto);
 
-            return Ok();
+            return Ok(result);
 
         }
 
@@ -40,7 +40,7 @@ namespace LabStreamer.Api.Controllers
 
             var result = this._albumService.Editar(dto,id);
 
-            return Ok();
+            return Ok(result);
 
         }
 
@@ -53,7 +53,7 @@ namespace LabStreamer.Api.Controllers
 
             bool result = this._albumService.Deletar(id);
 
-            return Ok(result);
+            return Ok();
 
         }
 

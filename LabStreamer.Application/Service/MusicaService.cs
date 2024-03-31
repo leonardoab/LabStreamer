@@ -15,13 +15,15 @@ namespace LabStreamer.Application.Service
         private IMapper Mapper { get; set; }
         private MusicaRepository MusicaRepository { get; set; }
         private BandaRepository BandaRepository { get; set; }
+        private ListaFavoritaRepository ListaFavoritaRepository { get; set; }
 
 
-        public MusicaService(IMapper mapper, MusicaRepository musicaRepository, BandaRepository bandaRepository)
+        public MusicaService(IMapper mapper, MusicaRepository musicaRepository, BandaRepository bandaRepository, ListaFavoritaRepository listaFavoritaRepository)
         {
             Mapper = mapper;
             MusicaRepository = musicaRepository;
             BandaRepository = bandaRepository;
+            ListaFavoritaRepository = listaFavoritaRepository;
         }
 
         public MusicaDto Criar(MusicaDto dto)
@@ -79,9 +81,22 @@ namespace LabStreamer.Application.Service
 
         }
 
-        public List<MusicaCompletaDto> BuscarTodasMusicas()
+        public List<MusicaCompletaDto> BuscarTodasMusicas(Guid id = default)
         {
             IEnumerable<Banda> todasBandas = BandaRepository.GetAll();
+
+            ListaFavorita listaFavorita = new ListaFavorita();
+
+            if (id == default)
+            {
+                // Lógica para buscar todas as músicas quando o id não for especificado
+            }
+            else
+            {
+                listaFavorita = ListaFavoritaRepository.GetById(id);
+            }
+
+            
 
             List<MusicaCompletaDto> listaMusicaCompleta = new List<MusicaCompletaDto>();
 
@@ -99,8 +114,9 @@ namespace LabStreamer.Application.Service
                         MusicaCompletaDto.idAbum = itemAlbum.Id;
                         MusicaCompletaDto.NomeAlbum = itemAlbum.Nome;
                         MusicaCompletaDto.idBanda = itemBanda.Id;
-                        MusicaCompletaDto.NomeBanda = itemBanda.Nome;
-                        MusicaCompletaDto.EstaFavorito = false;
+                        MusicaCompletaDto.NomeBanda = itemBanda.Nome;                        
+
+                        MusicaCompletaDto.EstaFavorito = listaFavorita.Musicas.Contains(itemMusica); 
 
                         listaMusicaCompleta.Add(MusicaCompletaDto);
 

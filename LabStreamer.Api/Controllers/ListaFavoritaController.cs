@@ -26,7 +26,7 @@ namespace LabStreamer.Api.Controllers
 
             var result = this._listaFavoritaService.Criar(dto);
 
-            return Ok();
+            return Ok(result);
 
         }
 
@@ -39,7 +39,7 @@ namespace LabStreamer.Api.Controllers
 
             var result = this._listaFavoritaService.Editar(dto,id);
 
-            return Ok();
+            return Ok(result);
 
         }
 

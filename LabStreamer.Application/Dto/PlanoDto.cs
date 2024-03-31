@@ -10,6 +10,10 @@ namespace LabStreamer.Application.Dto
     public class PlanoDto
     {
         [Required]
+        public Guid Id { get; set; }
+
+
+        [Required]
         public string Nome { get; set; }
 
         [Required]
