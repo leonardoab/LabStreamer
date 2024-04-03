@@ -34,7 +34,7 @@ namespace LabStreamer.Domain.Domains
 
         
 
-        private string CriptografarSenha(string senha)
+        public string CriptografarSenha(string senha)
         {
             SHA256 criptoProvider = SHA256.Create();
 

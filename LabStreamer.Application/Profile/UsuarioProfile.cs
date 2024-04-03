@@ -18,9 +18,18 @@ namespace LabStreamer.Application.Profile
 
                 d.Senha = "xxxxxxxxx";
 
+            });
+
+            CreateMap<UsuarioLoginDto, Usuario>();
+            CreateMap<Usuario, UsuarioLoginDto>().AfterMap((s, d) =>
+            {
+
+                d.Senha = "xxxxxxxxx";
+
             }); ;
 
 
         }
+
     }
 }

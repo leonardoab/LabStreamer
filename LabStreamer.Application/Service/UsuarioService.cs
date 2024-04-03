@@ -44,8 +44,8 @@ namespace LabStreamer.Application.Service
 
             usuario.Ativo = true;
 
-            Plano plano  = PlanoRepository.GetById(idPlano);
-            
+            Plano plano = PlanoRepository.GetById(idPlano);
+
             usuario.Plano = plano;
 
             usuario.PlanoId = plano.Id;
@@ -57,7 +57,7 @@ namespace LabStreamer.Application.Service
             return result;
 
         }
-        
+
 
         public UsuarioDto Editar(UsuarioDto dto, Guid id)
         {
@@ -124,7 +124,22 @@ namespace LabStreamer.Application.Service
 
         }
 
+        public UsuarioLoginDto Autenticar(string email, string senha)
+        {
+            //UsuarioLoginDto result;
 
+            var usuarioRetorno = UsuarioRepository.Find(x => x.Email.Contains(email)).FirstOrDefault();
+
+            if (usuarioRetorno.CriptografarSenha(senha) != usuarioRetorno.Senha) { return null; }
+
+            else
+            {
+                var result = Mapper.Map<UsuarioLoginDto>(usuarioRetorno);
+
+                return result;
+            }
+
+        }
 
 
 

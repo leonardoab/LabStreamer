@@ -31,11 +31,13 @@ namespace LabStreamer.Api.Controllers
 
         [HttpPost]
         [Route("Autenticar")]
-        public IActionResult Autenticar(UsuarioDto dto)
+        public IActionResult Autenticar(UsuarioLoginDto dto)
         {
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            //var result = this._usuarioService.Autenticar(dto);
+            var result = this._usuarioService.Autenticar(dto.Email,dto.Senha);
+
+            if (result == null) return BadRequest();
 
             return Ok();
         }
