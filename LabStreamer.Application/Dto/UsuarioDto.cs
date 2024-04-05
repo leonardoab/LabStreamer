@@ -17,6 +17,9 @@ namespace LabStreamer.Application.Dto
 
         [Required]
         public string Senha { get; set; }
+
+        public Guid Id { get; set; }
+
     }
 
     public class UsuarioLoginDto
@@ -28,4 +31,20 @@ namespace LabStreamer.Application.Dto
         [Required]
         public string Senha { get; set; }
     }
+
+    public class UsuarioCadastroDto
+    {
+        public Guid idPlano { get; set; }
+
+        [Required]
+        public string Nome { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public string Senha { get; set; }
+
+    }
+
 }

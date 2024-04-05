@@ -21,7 +21,7 @@ namespace LabStreamer.Domain.Domains
 
 
 
-        public virtual IList<ListaFavorita> ListaFavoritas { get; set; }
+        public virtual IList<ListaFavorita> ListaFavoritas { get; set; } = new List<ListaFavorita>();
 
         public void CriarUsuario(string nome, string email, string senha)
         {

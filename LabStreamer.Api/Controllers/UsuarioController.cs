@@ -18,12 +18,19 @@ namespace LabStreamer.Api.Controllers
 
         [HttpPost]
         [Route("Criar")]
-        public IActionResult Criar(UsuarioDto dto,Guid idPlano)
+        public IActionResult Criar(UsuarioCadastroDto dto)
         {
 
             if (ModelState is { IsValid: false }) return BadRequest();
 
-            var result = this._usuarioService.Criar(dto, idPlano);
+            UsuarioDto usuarioDto = new UsuarioDto();
+
+            usuarioDto.Email = dto.Email;
+            usuarioDto.Senha = dto.Senha;
+            usuarioDto.Nome = dto.Nome;
+
+
+            var result = this._usuarioService.Criar(usuarioDto, dto.idPlano);
 
             return Ok(result);
 
@@ -39,7 +46,7 @@ namespace LabStreamer.Api.Controllers
 
             if (result == null) return BadRequest();
 
-            return Ok();
+            return Ok(result);
         }
 
         [HttpGet]

@@ -95,5 +95,31 @@ namespace LabStreamer.Api.Controllers
             return Ok();
 
         }
+
+        [HttpPost]
+        [Route("DesssociarMusicaListaFavorita")]
+        public IActionResult DesssociarMusicaListaFavorita(Guid idMusica, Guid idListaFavorita)
+        {
+
+            if (ModelState is { IsValid: false }) return BadRequest();
+
+            var result = this._listaFavoritaService.DesassociarMusicaListaFavorita(idMusica, idListaFavorita);
+
+            return Ok();
+
+        }
+
+        [HttpGet]
+        [Route("BuscarListaUsuario")]
+        public IActionResult BuscarListaUsuario(Guid id)
+        {
+
+            if (ModelState is { IsValid: false }) return BadRequest();
+
+            var result = this._listaFavoritaService.BuscarListaFavoritaUsuario(id);
+
+            return Ok(result);
+
+        }
     }
 }

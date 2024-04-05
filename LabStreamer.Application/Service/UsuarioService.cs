@@ -48,7 +48,15 @@ namespace LabStreamer.Application.Service
 
             usuario.Plano = plano;
 
-            usuario.PlanoId = plano.Id;
+            usuario.PlanoId = plano.Id;            
+
+            ListaFavorita listaFavorita = new ListaFavorita();
+
+            listaFavorita.Nome = "Musicas Favoritas";
+
+            ListaFavoritaRepository.Save(listaFavorita);
+
+            usuario.ListaFavoritas.Add(listaFavorita);
 
             UsuarioRepository.Save(usuario);
 
@@ -124,7 +132,7 @@ namespace LabStreamer.Application.Service
 
         }
 
-        public UsuarioLoginDto Autenticar(string email, string senha)
+        public UsuarioDto Autenticar(string email, string senha)
         {
             //UsuarioLoginDto result;
 
@@ -134,7 +142,7 @@ namespace LabStreamer.Application.Service
 
             else
             {
-                var result = Mapper.Map<UsuarioLoginDto>(usuarioRetorno);
+                var result = Mapper.Map<UsuarioDto>(usuarioRetorno);
 
                 return result;
             }

@@ -94,6 +94,8 @@ namespace LabStreamer.Application.Service
             else
             {
                 listaFavorita = ListaFavoritaRepository.GetById(id);
+
+                if (listaFavorita ==null) {  listaFavorita = new ListaFavorita(); }
             }
 
             

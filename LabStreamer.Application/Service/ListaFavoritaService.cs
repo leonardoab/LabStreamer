@@ -15,13 +15,15 @@ namespace LabStreamer.Application.Service
         private IMapper Mapper { get; set; }
         private ListaFavoritaRepository ListaFavoritaRepository { get; set; }
         private MusicaRepository MusicaRepository { get; set; }
+        private UsuarioRepository UsuarioRepository { get; set; }
 
 
-        public ListaFavoritaService(IMapper mapper, ListaFavoritaRepository listaFavoritaRepository, MusicaRepository musicaRepository)
+        public ListaFavoritaService(IMapper mapper, ListaFavoritaRepository listaFavoritaRepository, MusicaRepository musicaRepository, UsuarioRepository usuarioRepository)
         {
             Mapper = mapper;
             ListaFavoritaRepository = listaFavoritaRepository;
             MusicaRepository = musicaRepository;
+            UsuarioRepository = usuarioRepository;
         }
 
         public ListaFavoritaDto Criar(ListaFavoritaDto dto)
@@ -80,6 +82,25 @@ namespace LabStreamer.Application.Service
         }
 
 
+        public List<ListaFavoritaDto> BuscarListaFavoritaUsuario(Guid id) {
+
+
+            List<ListaFavorita> listasFavoritas = UsuarioRepository.GetById(id).ListaFavoritas.ToList();
+
+            List<ListaFavoritaDto> listasFavoritsDto = new List<ListaFavoritaDto>();
+
+            foreach (var item in listasFavoritas)
+            {
+                listasFavoritsDto.Add(Mapper.Map<ListaFavoritaDto>(item));
+            }
+
+
+            return listasFavoritsDto;
+
+
+        }
+
+
 
         public ListaFavorita AssociarMusicaListaFavorita(Guid idMusica, Guid idListaFavorita)
         {
@@ -95,6 +116,28 @@ namespace LabStreamer.Application.Service
             }
 
             listaFavorita.Musicas.Add(musica);
+
+            ListaFavoritaRepository.Update(listaFavorita);
+
+            return listaFavorita;
+
+
+        }
+
+        public ListaFavorita DesassociarMusicaListaFavorita(Guid idMusica, Guid idListaFavorita)
+        {
+
+
+            ListaFavorita listaFavorita = ListaFavoritaRepository.GetById(idListaFavorita);
+
+            Musica musica = MusicaRepository.GetById(idMusica);
+
+            if (listaFavorita.Musicas is null)
+            {
+                listaFavorita.Musicas = new List<Musica>();
+            }
+
+            listaFavorita.Musicas.Remove(musica);
 
             ListaFavoritaRepository.Update(listaFavorita);
 
